@@ -15,14 +15,21 @@ class Solution
     string reverseWord(string str)
     {
         // Your code goes here
-        int left =0, right = str.length() - 1;
-        while(left<=right)
-        {
-            swap(str[left], str[right]);
-            left++;
-            right--;
-        }
+        int left = 0;
+        int right = str.length() - 1;
+        reverseStr(str, left, right);
         return str;
+    }
+    
+    void reverseStr(string& str, int left, int right)
+    {
+        
+        if(left>right)
+            return;
+        swap(str[left], str[right]);
+        left++;
+        right--;
+        reverseStr(str, left, right);
     }
 };
 
