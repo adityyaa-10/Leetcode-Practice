@@ -8,29 +8,46 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+// class Solution {
+// public:
+//     int getLength(ListNode *head)
+//     {   
+//         int len=0;
+//         while(head!= NULL)
+//         {
+//             len++;
+//             head= head->next;
+//         }
+//      return len;
+//     }
+//     ListNode* middleNode(ListNode* head) {
+//      int len =  getLength(head);
+//         int ans = len/2;
+        
+//         ListNode *temp = head;
+//         int count = 0;
+//         while(count<ans)
+//         {
+//             temp = temp->next;
+//             count++;
+//         }
+//         return temp;
+//     }
+// };
 class Solution {
 public:
-    int getLength(ListNode *head)
-    {   
-        int len=0;
-        while(head!= NULL)
-        {
-            len++;
-            head= head->next;
-        }
-     return len;
-    }
+    
     ListNode* middleNode(ListNode* head) {
-     int len =  getLength(head);
-        int ans = len/2;
-        
-        ListNode *temp = head;
-        int count = 0;
-        while(count<ans)
+       ListNode* slow = head;
+        ListNode* fast = head->next;  //Using two pointers approach 
+        // for every n steps of fast, slow traverse n/2 steps;
+        while(fast != NULL)
         {
-            temp = temp->next;
-            count++;
+            fast = fast->next;
+            if(fast != NULL)
+                fast = fast->next;
+             slow=slow->next;
         }
-        return temp;
+       return slow;
     }
 };
