@@ -1,28 +1,31 @@
-class Solution {
-public:
-    vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> ans;
-        vector<int> curr;
-        
-        int index = 0;        
-        solve(index, nums, curr, ans);
-        return ans;
-    }
-    
-    void solve(int index, vector<int> &nums, vector<int>curr, vector<vector<int>>&ans)
+class Solution
+{
+private:
+    void solve(int i, int n, vector<int> &sub, vector<vector<int>> &ans, vector<int> &nums)
     {
-        // BASE CASE
-        if(index == nums.size())
+        // Base Condition
+        if (i >= n)
         {
-            ans.push_back(curr);
+            ans.push_back(sub);
             return;
         }
-        
-        // IN CASE OF NOT PICK
-        solve(index+1, nums, curr, ans);
-        
-        // IN CASE OF PICK
-        curr.push_back(nums[index]);
-        solve(index+1, nums, curr, ans);
+
+        // Pick case
+        sub.push_back(nums[i]);
+        solve(i + 1, n, sub, ans, nums);
+
+        // Not pick
+        sub.pop_back();
+        solve(i + 1, n, sub, ans, nums);
+    }
+
+public:
+    vector<vector<int>> subsets(vector<int> &nums)
+    {
+        vector<vector<int>> ans;
+        vector<int> sub;
+        solve(0, nums.size(), sub, ans, nums);
+
+        return ans;
     }
 };
