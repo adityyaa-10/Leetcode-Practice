@@ -71,13 +71,16 @@ Space Complexity = O(n)
 */
 
 // Tabulation Space Optimised Code
-class Solution {
+class Solution
+{
 public:
-    int rob(vector<int> nums) {
+    int rob(vector<int> nums)
+    {
         int rob = nums[0];
         int notRob = 0;
 
-        for (int i = 1; i < nums.size(); i++) {
+        for (int i = 1; i < nums.size(); i++)
+        {
             int newRob = notRob + nums[i];
             int newNotRob = max(rob, notRob);
 
@@ -86,4 +89,7 @@ public:
         }
         return max(rob, notRob);
     }
+
+    //   Time Complexity = O(n)
+    // Space Complexity = O(n)
 };
